@@ -5,30 +5,24 @@ body {
 
 h1 {
   font-size: 5rem;
-  color: #DBEDF3;
   font-family: "Arvo", cursive;
-  text-shadow: 3px 0 #DA0463;
-
+  text-shadow: 3px 0 blue;
+  color: #DBEDF3;
 }
 
 footer {
-  font-size: 2rem;
-  color: #DA0463;
-  background-color: #DBEDF3;
+  font-size: 1.0rem;
+  color: whitesmoke;
+  background-color: #A52A2A;
   font-family: "Arvo", cursive;
   text-shadow: 3px 0 blue;
-  border: 10px solid #00008B;
+  /*border: 10px solid #00008B;*/
   width: 150px;
   height: 150px;
-  display:inline-block;
+  display: -webkit-inline-flex;
 }
 
-.footer {
-  background-image: url("images/dog.png");
-  width: 60px;
-  height: 60px;
-  z-index: -1;
-}
+
 .w {
 background-image: url("images/tom1.png");
 }
@@ -69,6 +63,9 @@ background-image: url("images/tom1.png");
 .pressed {
   box-shadow: 0 3px 4px 0 #DBEDF3;
   opacity: 0.5;
+  transform: scale(1.5);
+  transition: transform 0.25s ease;
+  
 }
 
 .red {
