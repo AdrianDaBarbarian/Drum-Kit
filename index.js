@@ -1,10 +1,45 @@
+// Listens for keys
+window.addEventListener("keydown", function (event, ) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+
+  // passes the event key "" into checks 
+  checks(event.key)
+
+  // passes the event key "" into checksAnimation 
+  checksAnimation(event.key);
+}, true);
 
 
-function checks(x) {
+
+//this changes the color of the ltters 
+
+var numOfButtons = document.querySelectorAll(".drum").length;
+for (var i = 0; i<numOfButtons; i++) {
+
+  document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     
- 
+    //sets the value of the current event's element's inner html which is a letter to clickInnerHTML
+    var clickInnerHTML = this.innerHTML;
 
-  switch (x) {
+   // passes the letter into checks 
+    checks(clickInnerHTML);
+
+    // passes the letter into checksAnimation
+    checksAnimation(clickInnerHTML);
+
+
+  });
+
+  
+}
+
+
+// function that checks which character matches to corresponding sound 
+function checks(key) {
+    
+  switch (key) {
     case "w":
     var audio = new Audio("sounds/tom-1.mp3")
     audio.play();
@@ -50,44 +85,21 @@ function checks(x) {
       return; // Quit when this doesn't handle the key event.
   }
 
-  // Cancel the default action to avoid it being handled twice
-
 }
 
-window.addEventListener("keydown", function (event, ) {
-  if (event.defaultPrevented) {
-    return; // Do nothing if the event was already processed
-  }
-  checks(event.key)
-  console.log(event.key)
-}, true);
 
+// function that adds and removes a class in css to make animation
+function checksAnimation(keyInput) {
 
+  // uses passed in input "" to query and add . that input and then sets it to activeEvent
+  var activeEvent = document.querySelector("." + keyInput);
 
-//this changes the color of the ltters 
+  // mends the class pressed into the queried element with corresponding class  
+  activeEvent.classList.add("pressed");
 
-var numOfButtons = document.querySelectorAll(".drum").length;
-for (var i = 0; i<numOfButtons; i++) {
+  // sets the duration or how long after adding the class, it will be removed
+  setTimeout(function() {
+    activeEvent.classList.remove("pressed");
+  }, 100);
 
-  document.querySelectorAll(".drum")[i].addEventListener("click", function ()
-  {
-    this.style.transform = "scale(1.5)";
-      this.style.transition = "transform 0.25s ease";
-    this.style.color = "white";
-    
-    console.log(this.innerHTML);
-    
-    checks(this.innerHTML)
-
-  });
-
-  document.querySelectorAll(".drum")[i].addEventListener("mouseout", function ()
-  {
-    this.style.transform = "scale(1)";
-        this.style.transition = "transform 0.25s ease";
-    this.style.color = "#DA0463";
-    
-  });
-
-  
 }
